@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function(){
     var config = {
         apiKey: "AIzaSyBPCAxjycmuYaeY8RISjpPzUOSfmZIbQrQ",
         authDomain: "train-scheduler-68643.firebaseapp.com",
@@ -18,7 +18,7 @@ $(document).ready(function () {
     var firstTrain;
     var frequency = 0;
 
-    $("#add-train").on("click", function () {
+    $("#add-train").on("click", function() {
         event.preventDefault();
         // Storing and retreiving new train data
         name = $("#train-name").val().trim();
@@ -37,7 +37,7 @@ $(document).ready(function () {
         $("form")[0].reset();
     });
 
-    database.ref().on("child_added", function (childSnapshot) {
+    database.ref().on("child_added", function(childSnapshot) {
         var nextArr;
         var minAway;
         // Chang year so first train comes before now
@@ -52,17 +52,17 @@ $(document).ready(function () {
         nextTrain = moment(nextTrain).format("hh:mm");
 
         $("#add-row").append("<tr><td>" + childSnapshot.val().name +
-            "</td><td>" + childSnapshot.val().destination +
-            "</td><td>" + childSnapshot.val().frequency +
-            "</td><td>" + nextTrain +
-            "</td><td>" + minAway + "</td></tr>");
+                "</td><td>" + childSnapshot.val().destination +
+                "</td><td>" + childSnapshot.val().frequency +
+                "</td><td>" + nextTrain + 
+                "</td><td>" + minAway + "</td></tr>");
 
-        // Handle the errors
-    }, function (errorObject) {
-        console.log("Errors handled: " + errorObject.code);
+            // Handle the errors
+        }, function(errorObject) {
+            console.log("Errors handled: " + errorObject.code);
     });
 
-    database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function (snapshot) {
+    database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
         // Change the HTML to reflect
         $("#name-display").html(snapshot.val().name);
         $("#email-display").html(snapshot.val().email);

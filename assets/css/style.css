@@ -9,9 +9,9 @@ panel{
 }
 
 .jumbotron{
-	background-color: #5cb85c;
+	background-color: darkslategrey;
 	/* Find light color of success panel */
-	color: #eeeecc;
+	color: lightgray;
 	padding-top: 1%;
 	padding-bottom: 2%;
 }
